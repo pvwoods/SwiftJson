@@ -9,7 +9,7 @@
 import Foundation
 
 import Cocoa
-
+import SwiftyJSON
 
 class ModelGenerator {
     
@@ -22,7 +22,7 @@ class ModelGenerator {
         }
     }
     
-    init(json:JSONValue, className:String, inspectArrays:Bool) {
+    init(json:JSON, className:String, inspectArrays:Bool) {
         
         // set up the init function
         var initOutput:IndentableOutput = IndentableOutput()
@@ -32,33 +32,32 @@ class ModelGenerator {
         (modelOutput += "class \(className) {").indent()
         
         // generate everything
-        switch(json) {
-            case .JArray(let array):
+        switch(json.type) {
+            case  .Array:
                 initOutput += "// initial element was array..."
-            case .JObject(let object):
-                for (key, value) in object {
-                    
+            case .Dictionary:
+                for (key: String, subJson: JSON) in json {
+                    //Do something you want
                     var type = ""
-                    
-                    switch value {
-                        case .JString(let value):
+                    switch (subJson.type) {
+                        case .String:
                             type = "String"
                             buildSetStatement(initOutput, key:key, type:type)
-                        case .JNumber(let value):
+                        case .Number:
                             type = "NSNumber"
                             buildSetStatement(initOutput, key:key, type:type)
-                        case .JBool(let value):
+                        case .Bool:
                             type = "Bool"
                             buildSetStatement(initOutput, key:key, type:type)
-                        case .JArray(let array):
-                            if(inspectArrays && array.count >= 1) {
-                                type = handleArray(array, key: key, className: className, inspectArrays: inspectArrays, io: initOutput)
+                        case .Array:
+                            if(inspectArrays && subJson.count >= 1) {
+                                type = handleArray(subJson.array!, key: key, className: className, inspectArrays: inspectArrays, io: initOutput)
                             } else {
                                 initOutput += "\(key) = json[\"\(key)\"]"
                             }
-                        case .JObject(let object):
+                        case .Dictionary:
                             var cn = self.buildClassName(className, suffix: key as String)
-                            childModels.append(ModelGenerator(json: value, className: cn, inspectArrays:inspectArrays))
+                            childModels.append(ModelGenerator(json: subJson, className: cn, inspectArrays:inspectArrays))
                             type = cn
                             initOutput += "\(key) = \(type)(json:json[\"\(key)\"])"
                         default:
@@ -84,24 +83,24 @@ class ModelGenerator {
         
     }
     
-    func handleArray(array:Array<JSONValue>, key:String, className:String, inspectArrays:Bool, io:IndentableOutput) -> String {
+    func handleArray(array:Array<JSON>, key:String, className:String, inspectArrays:Bool, io:IndentableOutput) -> String {
         
         var instantiation = "v"
         var type = "[AnyObject]"
             
-        switch array[0] {
-            case .JString(let value):
+        switch array[0].type {
+            case .String(let value):
                 type = "[String]"
             
-            case .JNumber(let value):
+            case .Number(let value):
                 type = "[NSNumber]"
             
-            case .JBool(let value):
+            case .Bool(let value):
                 type = "[Bool]"
             
-            case .JArray(let arr):
+            case .Array(let arr):
                 type = "[JSONValue]"
-            case .JObject(let object):
+            case .Dictionary(let object):
                 var cn = buildClassName(className, suffix: key as String)
                 childModels.append(ModelGenerator(json: array[0], className: cn, inspectArrays:inspectArrays))
                 type = "[" + cn + "]"

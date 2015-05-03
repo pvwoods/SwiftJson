@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import SwiftyJSON
 
 class ViewController: NSViewController {
     
@@ -17,13 +18,13 @@ class ViewController: NSViewController {
     
     var jsonTextView : NSTextView {
         get {
-            return jsonScrollView.contentView.documentView as NSTextView
+            return jsonScrollView.contentView.documentView as! NSTextView
         }
     }
     
     var modelTextView : NSTextView {
         get {
-            return modelScrollView.contentView.documentView as NSTextView
+            return modelScrollView.contentView.documentView as! NSTextView
         }
     }
     
@@ -52,25 +53,25 @@ class ViewController: NSViewController {
         
         var className = classNameTextField.stringValue.isEmpty ? "MyClass":classNameTextField.stringValue;
         
-        var jsonText = jsonTextView.textStorage.string
-        var jsonData = (jsonText as NSString).dataUsingEncoding(NSUTF8StringEncoding)
+        var jsonText = jsonTextView.textStorage!.string
+        var jsonData:NSData? = (jsonText as NSString).dataUsingEncoding(NSUTF8StringEncoding)
         
         if jsonData != nil {
             
-            let json = JSONValue(jsonData)
+            let json:JSON = JSON(data: jsonData!)
             
-            if json {
+            if json.type != .Unknown &&  json.type != .Null {
                 
                 let generator:ModelGenerator = ModelGenerator(json:json, className:className, inspectArrays:inspectArrays.state == 1)
                 
-                modelTextView.textStorage.setAttributedString(NSAttributedString(string: generator.output))
+                modelTextView.textStorage!.setAttributedString(NSAttributedString(string: generator.output))
                 
             } else {
-                modelTextView.textStorage.setAttributedString(NSAttributedString(string:"There was an issue parsing your JSON..."))
+                modelTextView.textStorage!.setAttributedString(NSAttributedString(string:"There was an issue parsing your JSON..."))
             }
             
         } else {
-            modelTextView.textStorage.setAttributedString(NSAttributedString(string:"Couldn't encode your data..."))
+            modelTextView.textStorage!.setAttributedString(NSAttributedString(string:"Couldn't encode your data..."))
         }
         
         
