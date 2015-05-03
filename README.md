@@ -1,4 +1,6 @@
 ##Swift JSON##
 Swift JSON takes away the monotony of hand writing serialization code for JSON structures.
+
 ###Caveats###
-* Swift JSON generates code that requires a forked version of [SwiftyJSON](https://github.com/pvwoods/SwiftyJSON) to be included in your project.
+
+This project uses cocoa pod must be installed and run pods install on root project
