@@ -79,7 +79,7 @@ struct ClassModel {
         case .Bool:
             return "Bool"
         case .Array:
-            return "[" + getType("", jsonObject: jsonObject[0]) + "]"
+            return "[" + getType(key, jsonObject: jsonObject[0]) + "]"
         case .Dictionary:
             return key
         default:

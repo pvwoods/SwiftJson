@@ -18,7 +18,7 @@ class GeneratorTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        generator = Generator(rootJsonObject: JSONUtils.stringToJSON(GeneratorTests.simpleJSON)!)
+        generator = Generator(jsonObject: JSONUtils.stringToJSON(GeneratorTests.simpleJSON)!)
     }
     
     override func tearDown() {
@@ -66,7 +66,7 @@ class GeneratorTests: XCTestCase {
     }
     
     func testGetClassRepresentation() {
-        let classes = generator!.getClassRepresentations()
+        let classes = generator!.getAllClassModels()
         for classString in classes {
              println(classString)
         }

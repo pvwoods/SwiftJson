@@ -61,7 +61,7 @@ class ViewController: NSViewController {
             let json:JSON = JSON(data: jsonData!)
             
             if json.type != .Unknown &&  json.type != .Null {
-               let generator = Generator(rootJsonObject: json)
+               let generator = Generator(jsonObject: json)
                modelTextView.textStorage!.setAttributedString(NSAttributedString(string:generator.getFinalOutput()))
             } else {
                 modelTextView.textStorage!.setAttributedString(NSAttributedString(string:"There was an issue parsing your JSON..."))

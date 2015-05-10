@@ -15,12 +15,12 @@
 		0BA6F9825CB93BB7617EB107 /* Pods_SwiftJson.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D223D5C29A10EFCEBDDBAA8 /* Pods_SwiftJson.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3E79DB0B41638523B3303177 /* Pods_SwiftJsonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BFFDC2DFACDEB9163980C9F /* Pods_SwiftJsonTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7E8A8D48194CB1790089D85D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E8A8D46194CB1790089D85D /* MainMenu.xib */; };
+		B27E45941AFEB97100D7EC8D /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27E45931AFEB97100D7EC8D /* Generator.swift */; };
+		B27E45951AFED26D00D7EC8D /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27E45931AFEB97100D7EC8D /* Generator.swift */; };
 		B2A978201AF6B02300B2BC8C /* NSScanner+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A9781F1AF6B02300B2BC8C /* NSScanner+Swift.swift */; };
 		B2D403161AF822970088E073 /* GeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D403151AF822970088E073 /* GeneratorTests.swift */; };
 		B2D403181AF8CC5D0088E073 /* ClassModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D403171AF8CC5D0088E073 /* ClassModel.swift */; };
 		B2D403191AF904CE0088E073 /* ClassModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D403171AF8CC5D0088E073 /* ClassModel.swift */; };
-		B2D4031C1AF920D10088E073 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4031B1AF920D10088E073 /* Generator.swift */; };
-		B2D4031F1AF920F40088E073 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4031B1AF920D10088E073 /* Generator.swift */; };
 		B2D403211AF921A30088E073 /* ClassModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D403201AF921A30088E073 /* ClassModelTests.swift */; };
 		B2D403231AF922340088E073 /* JSONUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D403221AF922340088E073 /* JSONUtils.swift */; };
 		B2D403251AF922DF0088E073 /* JSONUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D403241AF922DF0088E073 /* JSONUtilsTests.swift */; };
@@ -55,10 +55,10 @@
 		80BD305520F4EFFE3B982A84 /* Pods-SwiftJsonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftJsonTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftJsonTests/Pods-SwiftJsonTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B27DC36F1AF77685004C652E /* Dollar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dollar.framework; path = "Pods/../build/Debug-iphoneos/Pods-SwiftJsonTests/Dollar.framework"; sourceTree = "<group>"; };
 		B27DC3711AF7768F004C652E /* Cent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cent.framework; path = "Pods/../build/Debug-iphoneos/Pods-SwiftJson/Cent.framework"; sourceTree = "<group>"; };
+		B27E45931AFEB97100D7EC8D /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
 		B2A9781F1AF6B02300B2BC8C /* NSScanner+Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSScanner+Swift.swift"; sourceTree = "<group>"; };
 		B2D403151AF822970088E073 /* GeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratorTests.swift; sourceTree = "<group>"; };
 		B2D403171AF8CC5D0088E073 /* ClassModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassModel.swift; sourceTree = "<group>"; };
-		B2D4031B1AF920D10088E073 /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Generator.swift; path = ../../../../.Trash/Generator.swift; sourceTree = "<group>"; };
 		B2D403201AF921A30088E073 /* ClassModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassModelTests.swift; sourceTree = "<group>"; };
 		B2D403221AF922340088E073 /* JSONUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONUtils.swift; sourceTree = "<group>"; };
 		B2D403241AF922DF0088E073 /* JSONUtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONUtilsTests.swift; sourceTree = "<group>"; };
@@ -162,9 +162,9 @@
 		B2D4031A1AF91F7D0088E073 /* generator */ = {
 			isa = PBXGroup;
 			children = (
-				B2D4031B1AF920D10088E073 /* Generator.swift */,
 				B2D403171AF8CC5D0088E073 /* ClassModel.swift */,
 				B2D403221AF922340088E073 /* JSONUtils.swift */,
+				B27E45931AFEB97100D7EC8D /* Generator.swift */,
 			);
 			name = generator;
 			sourceTree = "<group>";
@@ -379,7 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07859D83194909F100D04588 /* AppDelegate.swift in Sources */,
-				B2D4031C1AF920D10088E073 /* Generator.swift in Sources */,
+				B27E45941AFEB97100D7EC8D /* Generator.swift in Sources */,
 				07859D81194909F100D04588 /* ViewController.swift in Sources */,
 				B2D403181AF8CC5D0088E073 /* ClassModel.swift in Sources */,
 				07859D7F194909F100D04588 /* main.swift in Sources */,
@@ -393,9 +393,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B27E45951AFED26D00D7EC8D /* Generator.swift in Sources */,
 				B2D403261AF9233C0088E073 /* JSONUtils.swift in Sources */,
 				B2D403251AF922DF0088E073 /* JSONUtilsTests.swift in Sources */,
-				B2D4031F1AF920F40088E073 /* Generator.swift in Sources */,
 				B2D403191AF904CE0088E073 /* ClassModel.swift in Sources */,
 				B2D403211AF921A30088E073 /* ClassModelTests.swift in Sources */,
 				B2D403161AF822970088E073 /* GeneratorTests.swift in Sources */,
