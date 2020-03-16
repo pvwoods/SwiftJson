@@ -30,7 +30,7 @@ class ViewController: NSViewController {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"onSelectGenerate:", name: "SELECTED_GENERATE", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"onSelectGenerate:", name: "SELECTED_GENERATE", object: nil);
             
         [jsonTextView, modelTextView].map {
             
